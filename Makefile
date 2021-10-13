@@ -18,7 +18,8 @@ NAME = push_swap
 FLAGS = -Wall -Wextra -Werror -g
 
 SRC = ft_push_swap.c ft_swap_fct.c ft_displaystack.c ft_errorhandle.c\
-	ft_sort.c ft_efficiency.c ft_leastsum.c ft_best_way.c ft_minimumop.c\
+	ft_preparesort.c ft_efficiency.c ft_leastsum.c ft_best_way.c ft_minimumop.c\
+	ft_sort8size.c ft_sortstack.c\
 
 LIBFT_PATH = ./libft/
 

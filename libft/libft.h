@@ -6,7 +6,7 @@
 /*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 12:47:42 by jzhou             #+#    #+#             */
-/*   Updated: 2021/09/03 17:51:01 by jzhou            ###   ########.fr       */
+/*   Updated: 2021/10/01 19:22:06 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -75,4 +76,16 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 //this function allocates memory, returns the line read
 char	*get_next_line(int fd);
 char	*ft_eof(char **line, char **buf);
+
+//printf simple functions
+int		ft_printf(const char *printarg, ...);
+
+int		ft_putchar(char c);
+int		ft_putstr(char *c);
+int		ft_putptr(void *ptr);
+int		ft_putnbr(int nbr);
+int		ft_putunsigned(unsigned int nbr);
+int		ft_putpcnt(void);
+int		ft_puthex(unsigned long decimalnbr);
+int		ft_puthex_cap(unsigned long decimalnbr);
 #endif

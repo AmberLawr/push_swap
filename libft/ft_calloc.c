@@ -6,11 +6,10 @@
 /*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:53:22 by jzhou             #+#    #+#             */
-/*   Updated: 2021/09/03 17:53:28 by jzhou            ###   ########.fr       */
+/*   Updated: 2021/10/01 20:28:16 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_calloc(size_t nitems, size_t size)

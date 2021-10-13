@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ft_preparesort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:03:11 by jzhou             #+#    #+#             */
-/*   Updated: 2021/09/26 18:26:07 by jzhou            ###   ########.fr       */
+/*   Updated: 2021/10/02 12:59:21 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-#include <stdbool.h>
-#include <stdio.h>
 
-void	ft_push_all(t_stack *from, t_stack *to)
+//we use this function to push all of stacka into stackb
+void	ft_push_all(t_stack *from, t_stack *to, t_list **mylst)
 {
 	while (from->stacksize_curt > 0)
+	{
 		ft_push(from, to);
+		ft_addto_lst(mylst, "pb");
+	}
 }
 
+//this is an outsourced function used to find
+//the smallest number inside a given stack filled with numbers
+//it returns the index of the smallest value.
 int	ft_smallestnbr(t_stack *actualstack)
 {
 	int	minimum;
@@ -39,27 +44,32 @@ int	ft_smallestnbr(t_stack *actualstack)
 	return (tmpsize);
 }
 
+//this function is only used in ft_sortfive
+//for hardcoding certain edge cases
+bool	ft_worstpos(t_stack *actualstack)
+{
+	int	index;
+
+	index = 0;
+	if (actualstack->actualstack[0] < actualstack->actualstack[1]
+		&& actualstack->actualstack[0] < actualstack->actualstack[2]
+		&& actualstack->actualstack[0] < actualstack->actualstack[3]
+		&& actualstack->actualstack[0] > actualstack->actualstack[4])
+		return (true);
+	else
+		return (false);
+}
+
 /*
 ** Returns true if 'stack' is sorted.
 ** Sorted in this case can be "2 3 4 5 1" as well.
 */
 bool	ft_issorted(t_stack *stack)
 {
-	int			minimum;
 	int			tmpsize;
 	int			nOfCmps;
 
-	minimum = stack->actualstack[0];
-	tmpsize = 1;
-	while (tmpsize < stack->stacksize_curt)
-	{
-		if (stack->actualstack[tmpsize] < minimum)
-			minimum = stack->actualstack[tmpsize];
-		tmpsize++;
-	}
-	tmpsize = 0;
-	while (stack->actualstack[tmpsize] != minimum)
-		tmpsize++;
+	tmpsize = ft_smallestnbr(stack);
 	nOfCmps = 0;
 	while (nOfCmps < stack->stacksize_curt - 1)
 	{
@@ -78,7 +88,7 @@ bool	ft_issorted(t_stack *stack)
 }
 
 /*
-** Simulates push(from, to) and returns true if 'to' stack would be sorted.
+** Simulates push(from, to) and returns true if 'to' stack would remain sorted.
 ** Does not change either stack.
 */
 bool	ft_simulatesort(t_stack *from, t_stack *to)

@@ -6,12 +6,15 @@
 /*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 19:20:55 by jzhou             #+#    #+#             */
-/*   Updated: 2021/09/28 16:51:15 by jzhou            ###   ########.fr       */
+/*   Updated: 2021/10/01 19:59:24 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+//these functions set up the t_rotationnbr struct from 4 possible cases
+//so that the struct version with the least amount of steps is taken
+//into consideration for further processing
 t_rotationnbr	*ft_rarb_init(t_rotationnbr *current)
 {
 	current->rr_amount = ft_minrr(*current);
@@ -46,7 +49,8 @@ t_rotationnbr	*ft_rarrb_init(t_rotationnbr *current, t_stack stackb)
 	return (current);
 }
 
-t_rotationnbr	*ft_rrarrb_init(t_rotationnbr *current, t_stack stacka, t_stack stackb)
+t_rotationnbr	*ft_rrarrb_init(t_rotationnbr *current, t_stack stacka,
+	t_stack stackb)
 {
 	current->rra_amount = stacka.stacksize_curt - current->ra_amount;
 	current->rrb_amount = stackb.stacksize_curt - current->rb_amount;
@@ -56,11 +60,13 @@ t_rotationnbr	*ft_rrarrb_init(t_rotationnbr *current, t_stack stacka, t_stack st
 	current->ra_amount = 0;
 	current->rb_amount = 0;
 	current->rr_amount = 0;
-	current->sum = current->rra_amount + current->rrb_amount + current->rrr_amount;
+	current->sum = current->rra_amount + current->rrb_amount
+		+ current->rrr_amount;
 	return (current);
 }
 
-t_rotationnbr	ft_best_way(t_stack stacka, t_stack stackb, t_rotationnbr *current)
+t_rotationnbr	ft_best_way(t_stack stacka, t_stack stackb,
+	t_rotationnbr *current)
 {
 	int	minindex;
 
